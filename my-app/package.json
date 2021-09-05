@@ -1,43 +1,107 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^12.20.19",
-    "@types/react": "^17.0.16",
-    "@types/react-dom": "^17.0.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.3.5",
-    "web-vitals": "^1.1.2"
+    "react-hook-form": "^7.6.3",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "@types/react-router-dom": "^5.1.6",
+    "@types/styled-components": "^5.1.4",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "autoprefixer": "^10.0.2",
+    "babel-jest": "^26.6.3",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
+    "caniuse-lite": "^1.0.30001158",
+    "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-css-modules-type-generator": "^1.2.0",
+    "parcel-plugin-typed-css-modules": "^1.1.0",
+    "postcss-modules": "^3.2.2",
+    "prettier": "^2.1.2",
+    "sass": "^1.29.0",
+    "typescript": "^4.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "parcel \"./src/index.html\" --port 3000",
+    "build": "parcel build \"./src/index.html\"",
+    "lint": "eslint './src/**/*.{jsx,js,ts,tsx,json}' && tsc",
+    "lint-windows": "eslint \"./src/**/*.{jsx,js,ts,tsx,json}\" && tsc",
+    "format": "eslint --fix './src/**/*.{jsx,js,ts,tsx,json}' && tsc",
+    "format-windows": "eslint --fix \"./src/**/*.{jsx,js,ts,tsx,json}\" && tsc"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "sonarjs",
+      "prettier"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "tsconfig.json",
+      "sourceType": "module"
+    },
+    "extends": [
+      "plugin:sonarjs/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "prettier"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "rules": {
+      "no-empty": "off",
+      "max-lines": [
+        "error",
+        300
+      ],
+      "max-lines-per-function": [
+        "error",
+        90
+      ],
+      "eqeqeq": [
+        "error"
+      ],
+      "no-console": "error",
+      "prettier/prettier": "error",
+      "react/no-unescaped-entities": "off",
+      "react/display-name": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/interface-name-prefix": "off",
+      "@typescript-eslint/no-var-requires": "off",
+      "@typescript-eslint/no-use-before-define": "off",
+      "@typescript-eslint/no-unused-vars": "error",
+      "sonarjs/cognitive-complexity": [
+        "error",
+        8
+      ],
+      "sonarjs/no-identical-expressions": "error",
+      "@typescript-eslint/explicit-module-boundary-types": "off"
+    },
+    "ignorePatterns": [
+      "**/*.d.ts",
+      "**/*.scss.d.ts",
+      "sdk/*",
+      "dist/*"
     ]
   }
 }
